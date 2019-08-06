@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Ry Uploders</h1>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Desc</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ry_uploders.each do |ry_uploder| %>
+      <tr>
+        <td><%= ry_uploder.title %></td>
+        <td><%= ry_uploder.desc %></td>
+         <td colspan="" rowspan="" headers=""> 
+          <%ry_uploder.uplodes.each do |image|%>
+            <%if image.previewable?%>
+              <%= link_to(image_tag(image.preview(resize_to_limit: [200, 200])),url_for(image),target: '_blank') %> 
+            <%elsif image.variable?%>
+              <%= link_to(image_tag(image.variant(resize_to_limit: [100, 100])),url_for(image),target: '_blank') %>
+            <%end%> 
+          <%end%>
+         </td>
+        <td><%= link_to 'Show', ry_uploder %></td>
+        <td><%= link_to 'Edit', edit_ry_uploder_path(ry_uploder) %></td>
+        <td><%= link_to 'Destroy', ry_uploder, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ry Uploder', new_ry_uploder_path %>

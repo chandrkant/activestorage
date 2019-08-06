@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+<%@ry_uploder.uplodes.each do |image|%>
+	<%if image.previewable?%>
+		<%=video_tag(url_for(image),size: "200x200",controls: "controls")%>
+	<%end%>
+<%end%>
+<p>
+  <strong>Title:</strong>
+  <%= @ry_uploder.title %>
+</p>
+
+<p>
+  <strong>Desc:</strong>
+  <%= @ry_uploder.desc %>
+</p>
+
+<%= link_to 'Edit', edit_ry_uploder_path(@ry_uploder) %> |
+<%= link_to 'Back', ry_uploders_path %>
